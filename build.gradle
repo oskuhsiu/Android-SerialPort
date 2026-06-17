@@ -3,21 +3,19 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        // 由 AGP 3.6.3 升至 7.4.2：jcenter 已關閉、舊的 dcendents maven plugin 不再可用，
+        // 且需要較新的 AGP/NDK 才能產生 16KB page size 對齊的 .so。
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }

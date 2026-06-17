@@ -1,2 +1,3 @@
-include ':app', ':serialportlib'
+// :app（demo）不納入建置：jitpack 只需發佈 library，單模組可維持乾淨座標 com.github.oskuhsiu:Android-SerialPort:TAG
+include ':serialportlib'
 rootProject.name='Android-SerialPort'

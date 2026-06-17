@@ -3,7 +3,7 @@
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.13)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -20,6 +20,11 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         src/main/jni/SerialPort.c)
+
+# Android 16KB page size 支援：將 LOAD segment 的對齊邊界由 4KB 提升到 16KB。
+# 即使是較舊的 NDK，只要透過此 linker flag 也能產生 16KB 對齊的 .so。
+# 參考：https://developer.android.com/guide/practices/page-sizes
+target_link_options(serialport PRIVATE "-Wl,-z,max-page-size=16384")
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
